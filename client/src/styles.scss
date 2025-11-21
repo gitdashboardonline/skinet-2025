@@ -45,3 +45,23 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.button-overrides(
+    (
+      filled-container-shape: '6px',
+      outlined-container-shape: '6px',
+    )
+  );
+
+  @include mat.badge-overrides(
+    (
+      background-color: blue,
+    )
+  );
+}
+
+.container {
+  @apply mx-auto max-w-screen-2xl ;
+}

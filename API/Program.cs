@@ -17,11 +17,24 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 builder.Services.AddCors();
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ConfigureHttpsDefaults(httpsOptions =>
+    {
+        httpsOptions.ServerCertificate = System.Security.Cryptography.X509Certificates.X509Certificate2.CreateFromPemFile(
+            "ssl/localhost.pem",
+            "ssl/localhost-key.pem"
+        );
+    });
+});
+
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 //builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+//app.UseHttpsRedirection();
 
 // Configure the HTTP request pipeline.
 app.UseMiddleware<ExceptionMiddleware>();
@@ -32,7 +45,7 @@ app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
 //     app.MapOpenApi();
 // }
 
-//app.UseHttpsRedirection();
+
 
 //app.UseAuthorization();
 
@@ -49,8 +62,8 @@ catch (Exception ex)
 {
     Console.WriteLine(ex);
     throw;
-    var logger = app.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogError(ex, "An error occurred seeding the DB.");
+    //var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    //logger.LogError(ex, "An error occurred seeding the DB.");
 }
 
 app.Run();
