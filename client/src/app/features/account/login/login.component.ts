@@ -32,8 +32,12 @@ export class LoginComponent {
   onSubmit() {
     this.accountService.login(this.loginForm.value).subscribe({
       next: () => {
+        console.log('loginpage');
         this.accountService.getUserInfo().subscribe();
-        this.router.navigateByUrl(this.returnUrl);
+        console.log('got user infor' + this.returnUrl);
+        // this.router.navigateByUrl(this.returnUrl);
+        this.router.navigateByUrl('/shop');
+        console.log('tredirected' + this.returnUrl);
       },
     });
   }

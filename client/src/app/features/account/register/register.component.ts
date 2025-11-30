@@ -31,12 +31,12 @@ export class RegisterComponent {
   private accountService = inject(AccountService);
   private router = inject(Router);
   private snack = inject(SnackbarService);
-  validationErrors?: string[];
+  validationErrors: any[] = [];
 
   registerForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
-    email: ['', Validators.required, Validators.email],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
   });
 

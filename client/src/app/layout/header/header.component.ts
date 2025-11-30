@@ -7,26 +7,39 @@ import { BusyService } from '../../core/services/busy.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CartService } from '../../core/services/cart.service';
 import { AccountService } from '../../core/services/account.service';
+import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatDivider } from '@angular/material/divider';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [MatIcon, MatButton, MatBadge, RouterLink, RouterLinkActive, MatProgressBarModule],
+  imports: [
+    MatIcon,
+    MatButton,
+    MatBadge,
+    RouterLink,
+    MatMenuTrigger,
+    MatMenu,
+    MatDivider,
+    MatMenuItem,
+    RouterLinkActive,
+    MatProgressBarModule,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   busyService = inject(BusyService);
   cartService = inject(CartService);
-  accountService = inject(AccountService)
-  private router = inject(Router)
+  accountService = inject(AccountService);
+  private router = inject(Router);
 
-  logout(){
+  logout() {
     this.accountService.logout().subscribe({
-      next: () =>{
+      next: () => {
         this.accountService.currentUser.set(null);
-        this.router.navigateByUrl('/')
-      }
-    })
+        this.router.navigateByUrl('/');
+      },
+    });
   }
   ngOnInit() {
     console.log(this.busyService.loading);

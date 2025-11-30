@@ -6,6 +6,7 @@ import { EmptyStateComponent } from '../../shared/components/empty-state/empty-s
 
 @Component({
   selector: 'app-cart',
+  standalone: true,
   imports: [CartItemComponent, OrderSummaryComponent, EmptyStateComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',

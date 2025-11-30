@@ -14,5 +14,5 @@ export const emptyCartGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
-  return false;
+  return true;
 };
