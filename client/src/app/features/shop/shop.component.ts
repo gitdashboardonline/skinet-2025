@@ -28,8 +28,8 @@ import { FormsModule } from '@angular/forms';
     MatMenuTrigger,
     MatPaginator,
     FormsModule,
-    MatIconButton
-],
+    MatIconButton,
+  ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
@@ -45,7 +45,7 @@ export class ShopComponent implements OnInit {
   ];
 
   shopParams = new ShopParams();
-  pageSizeOptions = [5,10,15,20];
+  pageSizeOptions = [5, 10, 15, 20];
 
   ngOnInit(): void {
     this.initializeShop();
@@ -62,11 +62,10 @@ export class ShopComponent implements OnInit {
       next: (response) => (this.products = response),
       error: (error) => console.log(error),
     });
-  }  
+  }
 
-
-  OnSearchChange(){
-    this.shopParams.pageNumber=1;
+  OnSearchChange() {
+    this.shopParams.pageNumber = 1;
     this.getProducts();
   }
 

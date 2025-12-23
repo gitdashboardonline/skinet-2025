@@ -1,22 +1,25 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ConfirmationToken } from '@stripe/stripe-js';
+import { PaymentSummary } from '../models/order';
 
 @Pipe({
-  name: 'card'
+  name: 'card',
 })
 export class CardPipe implements PipeTransform {
-
-  transform(value?: ConfirmationToken['payment_method_preview']['card'], ...args: unknown[]): unknown {
-    if(value?.brand && 
-      value.last4 && 
-      value.exp_month&& 
-      value.exp_year)
-      {
-        return `${value.brand.toUpperCase()} **** **** **** ${value.last4}, Expires ${value.exp_month}/${value.exp_year}`;
-      }
-      else{
-        return 'Unknown card details';
-      }
+  transform(
+    value?: ConfirmationToken['payment_method_preview'] | PaymentSummary,
+    ...args: unknown[]
+  ): unknown {
+    if (value && 'card' in value) {
+      const { brand, last4, exp_month, exp_year } = (
+        value as ConfirmationToken['payment_method_preview']
+      ).card!;
+      return `${brand.toUpperCase()} **** **** **** ${last4}, Expires ${exp_month}/${exp_year}`;
+    } else if (value && 'last4' in value) {
+      const { brand, last4, expMonth, expYear } = value as PaymentSummary;
+      return `${brand.toUpperCase()} **** **** **** ${last4}, Expires ${expMonth}/${expYear}`;
+    } else {
+      return 'Unknown card details';
+    }
   }
-
 }
