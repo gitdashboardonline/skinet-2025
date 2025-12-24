@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { MatBadge } from '@angular/material/badge';
@@ -9,6 +9,7 @@ import { CartService } from '../../core/services/cart.service';
 import { AccountService } from '../../core/services/account.service';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatDivider } from '@angular/material/divider';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -27,7 +28,13 @@ import { MatDivider } from '@angular/material/divider';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  /**
+   *
+   */
+  constructor() {
+    this.busyService.loading = true;
+  }
   busyService = inject(BusyService);
   cartService = inject(CartService);
   accountService = inject(AccountService);
@@ -42,6 +49,7 @@ export class HeaderComponent {
     });
   }
   ngOnInit() {
+    this.busyService.loading = true;
     console.log(this.busyService.loading);
   }
 }
