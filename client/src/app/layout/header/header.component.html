@@ -32,14 +32,14 @@
       }
     </div>
   </div>
-
-  @if(busyService.loading){
-  <!-- <mat-progress-bar mode="determinate" class="fixed top-20 z-50 w-100 h-100" value="75">
-</mat-progress-bar> -->
-  <mat-progress-bar mode="indeterminate" class="fixed top-20 z-50"></mat-progress-bar>
-
-  }
 </header>
+
+@if(busyService.loading){
+<!-- <mat-progress-bar mode="determinate" class="fixed top-20 z-50 w-100 h-100" value="75">
+</mat-progress-bar> -->
+<mat-progress-bar mode="indeterminate" class="fixed top-20 z-50"></mat-progress-bar>
+
+}
 
 <mat-menu #menu="matMenu" class="px-5">
   <button mat-menu-item class="px-3" routerLink="/cart">

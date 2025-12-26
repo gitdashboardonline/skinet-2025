@@ -13,7 +13,7 @@ namespace API.Controllers;
 [Route("api/[controller]")]
 public class ProductsController(IUnitOfWork unit): BaseApiController
 {
-
+    [Cache(600)]
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetProducts(
        [FromQuery] ProductSpecParams specParams)
@@ -23,6 +23,7 @@ public class ProductsController(IUnitOfWork unit): BaseApiController
 
     }
 
+    [Cache(600)]
     [HttpGet("{id:int}")]
     public async Task<ActionResult<Product>> GetProduct(int id)
     {
@@ -33,7 +34,7 @@ public class ProductsController(IUnitOfWork unit): BaseApiController
         
     }
 
-
+    [InvalidateCache("api/products|")]
     [Authorize(Roles ="Admin")]
     [HttpPost]
     public async Task<ActionResult<Product>> CreateProduct([FromBody]Product product)
@@ -47,6 +48,7 @@ public class ProductsController(IUnitOfWork unit): BaseApiController
         
     }
 
+    [InvalidateCache("api/products|")]
     [Authorize(Roles ="Admin")]
     [HttpPut("{id:int}")]
     public async Task<ActionResult> UpdateProduct(int id, Product product)
@@ -62,6 +64,7 @@ public class ProductsController(IUnitOfWork unit): BaseApiController
 
     }
 
+    [InvalidateCache("api/products|")]
     [Authorize(Roles ="Admin")]
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> DeleteProduct(int id)
@@ -78,6 +81,7 @@ public class ProductsController(IUnitOfWork unit): BaseApiController
         
     }
 
+    [Cache(1000)]
     [HttpGet("brands")]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetBrands()
     {
@@ -88,6 +92,7 @@ public class ProductsController(IUnitOfWork unit): BaseApiController
          //return Ok();
     }
 
+    [Cache(1000)]
     [HttpGet("types")]
     public async Task<ActionResult<IReadOnlyList<Product>>> GetTypes()
     {
