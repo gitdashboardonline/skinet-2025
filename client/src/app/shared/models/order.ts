@@ -11,6 +11,7 @@ export interface Order {
   status: string;
   paymentIntentId: string;
   total: number;
+  discount?: number;
 }
 
 export interface ShippingAddress {
@@ -43,4 +44,5 @@ export interface OrderToCreate {
   deliveryMethodId: number;
   shippingAddress: ShippingAddress;
   paymentSummary: PaymentSummary;
+  discount?: number;
 }

@@ -6,6 +6,7 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+
 html {
   @include mat.theme(
     (
@@ -57,7 +58,7 @@ body {
 
   @include mat.badge-overrides(
     (
-      background-color: blue,
+      background-color: rgb(23, 96, 253),
     )
   );
 }

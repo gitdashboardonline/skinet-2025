@@ -19,8 +19,7 @@ import { DialogService } from '../../core/services/dialog.service';
   standalone: true,
   imports: [
     MatTableModule,
-    MatPaginatorModule,
-    MatButton,
+    MatPaginatorModule, 
     MatIcon,
     MatSelectModule,
     DatePipe,

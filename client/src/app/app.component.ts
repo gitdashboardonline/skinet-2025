@@ -5,18 +5,17 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from './shared/models/product';
 import { Pagination } from './shared/models/pagination';
 import { ShopService } from './core/services/shop.service';
-import { ShopComponent } from "./features/shop/shop.component";
+import { ShopComponent } from './features/shop/shop.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, ShopComponent],
+  imports: [RouterOutlet, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent  {
- // baseUrl = 'https://localhost:5001/api/';
+export class AppComponent {
+  // baseUrl = 'https://localhost:5001/api/';
 
-     title = 'Skinet';
-  
+  title = 'Skinet';
 }

@@ -48,6 +48,7 @@ builder.Services.AddIdentityApiEndpoints<AppUser>()
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<StoreContext>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddSignalR();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

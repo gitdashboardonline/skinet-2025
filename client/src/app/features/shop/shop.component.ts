@@ -13,13 +13,12 @@ import { ShopParams } from '../../shared/models/shopParams';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { Pagination } from '../../shared/models/pagination';
 import { FormsModule } from '@angular/forms';
-import { EmptyStateComponent } from "../../shared/components/empty-state/empty-state.component";
+import { EmptyStateComponent } from '../../shared/components/empty-state/empty-state.component';
 
 @Component({
   selector: 'app-shop',
   standalone: true,
   imports: [
-    MatCard,
     ProductItemComponent,
     MatButton,
     MatIcon,
@@ -30,8 +29,8 @@ import { EmptyStateComponent } from "../../shared/components/empty-state/empty-s
     MatPaginator,
     FormsModule,
     MatIconButton,
-    EmptyStateComponent
-],
+    EmptyStateComponent,
+  ],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
